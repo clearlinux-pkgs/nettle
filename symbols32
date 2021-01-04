@@ -1,7 +1,6 @@
 libhogweed.so.6:HOGWEED_6
-libhogweed.so.6:HOGWEED_INTERNAL_6_0
+libhogweed.so.6:HOGWEED_INTERNAL_6_1
 libhogweed.so.6:_nettle_cnd_copy
-libhogweed.so.6:_nettle_cnd_swap
 libhogweed.so.6:_nettle_curve25519_eh_to_x
 libhogweed.so.6:_nettle_curve448_eh_to_x
 libhogweed.so.6:_nettle_dsa_hash
@@ -24,6 +23,8 @@ libhogweed.so.6:_nettle_ecc_mod_addmul_1
 libhogweed.so.6:_nettle_ecc_mod_inv
 libhogweed.so.6:_nettle_ecc_mod_mul
 libhogweed.so.6:_nettle_ecc_mod_mul_1
+libhogweed.so.6:_nettle_ecc_mod_pow_2k
+libhogweed.so.6:_nettle_ecc_mod_pow_2k_mul
 libhogweed.so.6:_nettle_ecc_mod_random
 libhogweed.so.6:_nettle_ecc_mod_sqr
 libhogweed.so.6:_nettle_ecc_mod_sub
@@ -267,11 +268,12 @@ libhogweed.so.6:nettle_sexp_transport_iterator_first
 libhogweed.so.6:nettle_sexp_transport_vformat
 libhogweed.so.6:nettle_sexp_vformat
 libnettle.so.8:NETTLE_8
-libnettle.so.8:NETTLE_INTERNAL_8_0
+libnettle.so.8:NETTLE_INTERNAL_8_1
 libnettle.so.8:_nettle_aes_decrypt
 libnettle.so.8:_nettle_aes_encrypt
 libnettle.so.8:_nettle_aes_invert
 libnettle.so.8:_nettle_aes_set_key
+libnettle.so.8:_nettle_blowfish_encround
 libnettle.so.8:_nettle_camellia_absorb
 libnettle.so.8:_nettle_camellia_crypt
 libnettle.so.8:_nettle_camellia_invert_key
@@ -283,6 +285,7 @@ libnettle.so.8:_nettle_poly1305_digest
 libnettle.so.8:_nettle_poly1305_set_key
 libnettle.so.8:_nettle_ripemd160_compress
 libnettle.so.8:_nettle_salsa20_core
+libnettle.so.8:_nettle_salsa20_crypt
 libnettle.so.8:_nettle_sha256_compress
 libnettle.so.8:_nettle_sha3_pad
 libnettle.so.8:_nettle_sha3_update
@@ -354,6 +357,8 @@ libnettle.so.8:nettle_base64_encode_update
 libnettle.so.8:nettle_base64url_decode_init
 libnettle.so.8:nettle_base64url_encode_init
 libnettle.so.8:nettle_blowfish128_set_key
+libnettle.so.8:nettle_blowfish_bcrypt_hash
+libnettle.so.8:nettle_blowfish_bcrypt_verify
 libnettle.so.8:nettle_blowfish_decrypt
 libnettle.so.8:nettle_blowfish_encrypt
 libnettle.so.8:nettle_blowfish_set_key
@@ -550,6 +555,11 @@ libnettle.so.8:nettle_hmac_sha384_set_key
 libnettle.so.8:nettle_hmac_sha512_digest
 libnettle.so.8:nettle_hmac_sha512_set_key
 libnettle.so.8:nettle_hmac_sha512_update
+libnettle.so.8:nettle_hmac_streebog256_digest
+libnettle.so.8:nettle_hmac_streebog256_set_key
+libnettle.so.8:nettle_hmac_streebog512_digest
+libnettle.so.8:nettle_hmac_streebog512_set_key
+libnettle.so.8:nettle_hmac_streebog512_update
 libnettle.so.8:nettle_hmac_update
 libnettle.so.8:nettle_knuth_lfib_get
 libnettle.so.8:nettle_knuth_lfib_get_array
@@ -634,6 +644,11 @@ libnettle.so.8:nettle_siv_cmac_aes256_set_key
 libnettle.so.8:nettle_siv_cmac_decrypt_message
 libnettle.so.8:nettle_siv_cmac_encrypt_message
 libnettle.so.8:nettle_siv_cmac_set_key
+libnettle.so.8:nettle_streebog256_digest
+libnettle.so.8:nettle_streebog256_init
+libnettle.so.8:nettle_streebog512_digest
+libnettle.so.8:nettle_streebog512_init
+libnettle.so.8:nettle_streebog512_update
 libnettle.so.8:nettle_twofish128_set_key
 libnettle.so.8:nettle_twofish192_set_key
 libnettle.so.8:nettle_twofish256_set_key
