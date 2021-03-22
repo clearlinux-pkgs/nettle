@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xF3599FF828C67298 (nisse@lysator.liu.se)
 #
 Name     : nettle
-Version  : 3.7.1
-Release  : 46
-URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.1.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.1.tar.gz
-Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.1.tar.gz.sig
+Version  : 3.7.2
+Release  : 47
+URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.2.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.2.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.2.tar.gz.sig
 Summary  : Nettle low-level cryptographic library (symmetric algorithms)
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.0+ LGPL-3.0
@@ -124,10 +124,10 @@ license components for the nettle package.
 
 
 %prep
-%setup -q -n nettle-3.7.1
-cd %{_builddir}/nettle-3.7.1
+%setup -q -n nettle-3.7.2
+cd %{_builddir}/nettle-3.7.2
 pushd ..
-cp -a nettle-3.7.1 build32
+cp -a nettle-3.7.2 build32
 popd
 
 %build
@@ -135,7 +135,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1613659395
+export SOURCE_DATE_EPOCH=1616425540
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -166,12 +166,12 @@ make -C testsuite check
 make -C ../build32/testsuite check
 
 %install
-export SOURCE_DATE_EPOCH=1613659395
+export SOURCE_DATE_EPOCH=1616425540
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nettle
-cp %{_builddir}/nettle-3.7.1/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
-cp %{_builddir}/nettle-3.7.1/COPYINGv2 %{buildroot}/usr/share/package-licenses/nettle/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/nettle-3.7.1/COPYINGv3 %{buildroot}/usr/share/package-licenses/nettle/e88f6aea9379eb98a7bbea965fc7127a64b41ad9
+cp %{_builddir}/nettle-3.7.2/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
+cp %{_builddir}/nettle-3.7.2/COPYINGv2 %{buildroot}/usr/share/package-licenses/nettle/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/nettle-3.7.2/COPYINGv3 %{buildroot}/usr/share/package-licenses/nettle/e88f6aea9379eb98a7bbea965fc7127a64b41ad9
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -284,16 +284,16 @@ rm -f %{buildroot}/usr/bin/sexp-conv
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libhogweed.so.6
-/usr/lib64/libhogweed.so.6.2
+/usr/lib64/libhogweed.so.6.3
 /usr/lib64/libnettle.so.8
-/usr/lib64/libnettle.so.8.2
+/usr/lib64/libnettle.so.8.3
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libhogweed.so.6
-/usr/lib32/libhogweed.so.6.2
+/usr/lib32/libhogweed.so.6.3
 /usr/lib32/libnettle.so.8
-/usr/lib32/libnettle.so.8.2
+/usr/lib32/libnettle.so.8.3
 
 %files license
 %defattr(0644,root,root,0755)

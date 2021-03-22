@@ -1,5 +1,5 @@
 libhogweed.so.6:HOGWEED_6
-libhogweed.so.6:HOGWEED_INTERNAL_6_2
+libhogweed.so.6:HOGWEED_INTERNAL_6_3
 libhogweed.so.6:_nettle_cnd_copy
 libhogweed.so.6:_nettle_curve25519_eh_to_x
 libhogweed.so.6:_nettle_curve448_eh_to_x
@@ -25,10 +25,12 @@ libhogweed.so.6:_nettle_ecc_mod_addmul_1
 libhogweed.so.6:_nettle_ecc_mod_inv
 libhogweed.so.6:_nettle_ecc_mod_mul
 libhogweed.so.6:_nettle_ecc_mod_mul_1
+libhogweed.so.6:_nettle_ecc_mod_mul_canonical
 libhogweed.so.6:_nettle_ecc_mod_pow_2k
 libhogweed.so.6:_nettle_ecc_mod_pow_2k_mul
 libhogweed.so.6:_nettle_ecc_mod_random
 libhogweed.so.6:_nettle_ecc_mod_sqr
+libhogweed.so.6:_nettle_ecc_mod_sqr_canonical
 libhogweed.so.6:_nettle_ecc_mod_sub
 libhogweed.so.6:_nettle_ecc_mod_submul_1
 libhogweed.so.6:_nettle_ecc_mul_a
@@ -275,7 +277,7 @@ libhogweed.so.6:nettle_sexp_transport_iterator_first
 libhogweed.so.6:nettle_sexp_transport_vformat
 libhogweed.so.6:nettle_sexp_vformat
 libnettle.so.8:NETTLE_8
-libnettle.so.8:NETTLE_INTERNAL_8_2
+libnettle.so.8:NETTLE_INTERNAL_8_3
 libnettle.so.8:_nettle_aes_decrypt
 libnettle.so.8:_nettle_aes_decrypt_aesni
 libnettle.so.8:_nettle_aes_decrypt_x86_64
