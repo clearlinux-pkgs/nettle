@@ -6,7 +6,7 @@
 #
 Name     : nettle
 Version  : 3.7.3
-Release  : 48
+Release  : 49
 URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.3.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.3.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.3.tar.gz.sig
@@ -14,6 +14,7 @@ Summary  : Nettle low-level cryptographic library (symmetric algorithms)
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.0+ LGPL-3.0
 Requires: nettle-bin = %{version}-%{release}
+Requires: nettle-filemap = %{version}-%{release}
 Requires: nettle-info = %{version}-%{release}
 Requires: nettle-lib = %{version}-%{release}
 Requires: nettle-license = %{version}-%{release}
@@ -61,6 +62,7 @@ of the library.
 Summary: bin components for the nettle package.
 Group: Binaries
 Requires: nettle-license = %{version}-%{release}
+Requires: nettle-filemap = %{version}-%{release}
 
 %description bin
 bin components for the nettle package.
@@ -89,6 +91,14 @@ Requires: nettle-dev = %{version}-%{release}
 dev32 components for the nettle package.
 
 
+%package filemap
+Summary: filemap components for the nettle package.
+Group: Default
+
+%description filemap
+filemap components for the nettle package.
+
+
 %package info
 Summary: info components for the nettle package.
 Group: Default
@@ -101,6 +111,7 @@ info components for the nettle package.
 Summary: lib components for the nettle package.
 Group: Libraries
 Requires: nettle-license = %{version}-%{release}
+Requires: nettle-filemap = %{version}-%{release}
 
 %description lib
 lib components for the nettle package.
@@ -129,31 +140,44 @@ cd %{_builddir}/nettle-3.7.3
 pushd ..
 cp -a nettle-3.7.3 build32
 popd
+pushd ..
+cp -a nettle-3.7.3 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623079541
+export SOURCE_DATE_EPOCH=1634254528
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
 %configure --disable-static --disable-openssl --enable-shared --enable-static  --enable-x86-aesni
 make  %{?_smp_mflags}
 
 pushd ../build32/
-export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+export PKG_CONFIG_PATH="/usr/lib32/pkgconfig:/usr/share/pkgconfig"
 export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
 export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
 %configure --disable-static --disable-openssl --enable-shared --enable-static  --enable-x86-aesni   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+make  %{?_smp_mflags}
+popd
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%configure --disable-static --disable-openssl --enable-shared --enable-static  --enable-x86-aesni
 make  %{?_smp_mflags}
 popd
 %check
@@ -166,7 +190,7 @@ make -C testsuite check
 make -C ../build32/testsuite check
 
 %install
-export SOURCE_DATE_EPOCH=1623079541
+export SOURCE_DATE_EPOCH=1634254528
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nettle
 cp %{_builddir}/nettle-3.7.3/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
@@ -180,13 +204,23 @@ pushd %{buildroot}/usr/lib32/pkgconfig
 for i in *.pc ; do ln -s $i 32$i ; done
 popd
 fi
+if [ -d %{buildroot}/usr/share/pkgconfig ]
+then
+pushd %{buildroot}/usr/share/pkgconfig
+for i in *.pc ; do ln -s $i 32$i ; done
+popd
+fi
+popd
+pushd ../buildavx2/
+%make_install_v3
 popd
 %make_install
 ## Remove excluded files
-rm -f %{buildroot}/usr/bin/nettle-hash
-rm -f %{buildroot}/usr/bin/nettle-lfib-stream
-rm -f %{buildroot}/usr/bin/pkcs1-conv
-rm -f %{buildroot}/usr/bin/sexp-conv
+rm -f %{buildroot}*/usr/bin/nettle-hash
+rm -f %{buildroot}*/usr/bin/nettle-lfib-stream
+rm -f %{buildroot}*/usr/bin/pkcs1-conv
+rm -f %{buildroot}*/usr/bin/sexp-conv
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -194,6 +228,7 @@ rm -f %{buildroot}/usr/bin/sexp-conv
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/nettle-pbkdf2
+/usr/share/clear/optimized-elf/bin*
 
 %files dev
 %defattr(-,root,root,-)
@@ -277,6 +312,10 @@ rm -f %{buildroot}/usr/bin/sexp-conv
 /usr/lib32/pkgconfig/hogweed.pc
 /usr/lib32/pkgconfig/nettle.pc
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-nettle
+
 %files info
 %defattr(0644,root,root,0755)
 /usr/share/info/nettle.info
@@ -287,6 +326,7 @@ rm -f %{buildroot}/usr/bin/sexp-conv
 /usr/lib64/libhogweed.so.6.4
 /usr/lib64/libnettle.so.8
 /usr/lib64/libnettle.so.8.4
+/usr/share/clear/optimized-elf/lib*
 
 %files lib32
 %defattr(-,root,root,-)
