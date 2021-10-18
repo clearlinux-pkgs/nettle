@@ -6,7 +6,7 @@
 #
 Name     : nettle
 Version  : 3.7.3
-Release  : 49
+Release  : 50
 URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.3.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.3.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.3.tar.gz.sig
@@ -149,7 +149,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634254528
+export SOURCE_DATE_EPOCH=1634597915
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -190,7 +190,7 @@ make -C testsuite check
 make -C ../build32/testsuite check
 
 %install
-export SOURCE_DATE_EPOCH=1634254528
+export SOURCE_DATE_EPOCH=1634597915
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nettle
 cp %{_builddir}/nettle-3.7.3/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
@@ -220,6 +220,9 @@ rm -f %{buildroot}*/usr/bin/nettle-hash
 rm -f %{buildroot}*/usr/bin/nettle-lfib-stream
 rm -f %{buildroot}*/usr/bin/pkcs1-conv
 rm -f %{buildroot}*/usr/bin/sexp-conv
+## install_append content
+chmod a+x %{buildroot}*/usr/lib64/*
+## install_append end
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
