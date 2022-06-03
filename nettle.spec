@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xF3599FF828C67298 (nisse@lysator.liu.se)
 #
 Name     : nettle
-Version  : 3.7.3
-Release  : 52
-URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.3.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.3.tar.gz
-Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.7.3.tar.gz.sig
+Version  : 3.8
+Release  : 53
+URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.tar.gz.sig
 Summary  : Nettle low-level cryptographic library (symmetric algorithms)
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.0+ LGPL-3.0
@@ -28,7 +28,6 @@ BuildRequires : gmp-dev
 BuildRequires : gmp-dev32
 BuildRequires : gmp-lib32
 BuildRequires : openssl-dev
-BuildRequires : p11-kit
 BuildRequires : texinfo
 BuildRequires : valgrind-dev
 
@@ -135,13 +134,13 @@ license components for the nettle package.
 
 
 %prep
-%setup -q -n nettle-3.7.3
-cd %{_builddir}/nettle-3.7.3
+%setup -q -n nettle-3.8
+cd %{_builddir}/nettle-3.8
 pushd ..
-cp -a nettle-3.7.3 build32
+cp -a nettle-3.8 build32
 popd
 pushd ..
-cp -a nettle-3.7.3 buildavx2
+cp -a nettle-3.8 buildavx2
 popd
 
 %build
@@ -149,15 +148,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634597915
+export SOURCE_DATE_EPOCH=1654268686
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
 %configure --disable-static --disable-openssl --enable-shared --enable-static  --enable-x86-aesni
 make  %{?_smp_mflags}
 
@@ -172,9 +171,9 @@ make  %{?_smp_mflags}
 popd
 unset PKG_CONFIG_PATH
 pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
-export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
-export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 %configure --disable-static --disable-openssl --enable-shared --enable-static  --enable-x86-aesni
@@ -190,12 +189,12 @@ make -C testsuite check
 make -C ../build32/testsuite check
 
 %install
-export SOURCE_DATE_EPOCH=1634597915
+export SOURCE_DATE_EPOCH=1654268686
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nettle
-cp %{_builddir}/nettle-3.7.3/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
-cp %{_builddir}/nettle-3.7.3/COPYINGv2 %{buildroot}/usr/share/package-licenses/nettle/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/nettle-3.7.3/COPYINGv3 %{buildroot}/usr/share/package-licenses/nettle/e88f6aea9379eb98a7bbea965fc7127a64b41ad9
+cp %{_builddir}/nettle-3.8/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
+cp %{_builddir}/nettle-3.8/COPYINGv2 %{buildroot}/usr/share/package-licenses/nettle/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/nettle-3.8/COPYINGv3 %{buildroot}/usr/share/package-licenses/nettle/e88f6aea9379eb98a7bbea965fc7127a64b41ad9
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -278,6 +277,7 @@ chmod a+x %{buildroot}*/usr/lib64/*
 /usr/include/nettle/memxor.h
 /usr/include/nettle/nettle-meta.h
 /usr/include/nettle/nettle-types.h
+/usr/include/nettle/nist-keywrap.h
 /usr/include/nettle/pbkdf2.h
 /usr/include/nettle/pgp.h
 /usr/include/nettle/pkcs1.h
@@ -295,6 +295,7 @@ chmod a+x %{buildroot}*/usr/lib64/*
 /usr/include/nettle/sha2.h
 /usr/include/nettle/sha3.h
 /usr/include/nettle/siv-cmac.h
+/usr/include/nettle/sm3.h
 /usr/include/nettle/streebog.h
 /usr/include/nettle/twofish.h
 /usr/include/nettle/umac.h
@@ -326,17 +327,17 @@ chmod a+x %{buildroot}*/usr/lib64/*
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libhogweed.so.6
-/usr/lib64/libhogweed.so.6.4
+/usr/lib64/libhogweed.so.6.5
 /usr/lib64/libnettle.so.8
-/usr/lib64/libnettle.so.8.4
+/usr/lib64/libnettle.so.8.5
 /usr/share/clear/optimized-elf/lib*
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libhogweed.so.6
-/usr/lib32/libhogweed.so.6.4
+/usr/lib32/libhogweed.so.6.5
 /usr/lib32/libnettle.so.8
-/usr/lib32/libnettle.so.8.4
+/usr/lib32/libnettle.so.8.5
 
 %files license
 %defattr(0644,root,root,0755)
