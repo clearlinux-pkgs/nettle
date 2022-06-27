@@ -6,7 +6,7 @@
 #
 Name     : nettle
 Version  : 3.8
-Release  : 53
+Release  : 54
 URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.tar.gz.sig
@@ -90,6 +90,14 @@ Requires: nettle-dev = %{version}-%{release}
 dev32 components for the nettle package.
 
 
+%package extras
+Summary: extras components for the nettle package.
+Group: Default
+
+%description extras
+extras components for the nettle package.
+
+
 %package filemap
 Summary: filemap components for the nettle package.
 Group: Default
@@ -148,7 +156,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1654268686
+export SOURCE_DATE_EPOCH=1656306819
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -189,7 +197,7 @@ make -C testsuite check
 make -C ../build32/testsuite check
 
 %install
-export SOURCE_DATE_EPOCH=1654268686
+export SOURCE_DATE_EPOCH=1656306819
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nettle
 cp %{_builddir}/nettle-3.8/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
@@ -222,7 +230,7 @@ rm -f %{buildroot}*/usr/bin/sexp-conv
 ## install_append content
 chmod a+x %{buildroot}*/usr/lib64/*
 ## install_append end
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -316,6 +324,15 @@ chmod a+x %{buildroot}*/usr/lib64/*
 /usr/lib32/pkgconfig/hogweed.pc
 /usr/lib32/pkgconfig/nettle.pc
 
+%files extras
+%defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libhogweed.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libhogweed.so.6
+/usr/lib64/glibc-hwcaps/x86-64-v3/libhogweed.so.6.5
+/usr/lib64/glibc-hwcaps/x86-64-v3/libnettle.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libnettle.so.8
+/usr/lib64/glibc-hwcaps/x86-64-v3/libnettle.so.8.5
+
 %files filemap
 %defattr(-,root,root,-)
 /usr/share/clear/filemap/filemap-nettle
@@ -330,7 +347,6 @@ chmod a+x %{buildroot}*/usr/lib64/*
 /usr/lib64/libhogweed.so.6.5
 /usr/lib64/libnettle.so.8
 /usr/lib64/libnettle.so.8.5
-/usr/share/clear/optimized-elf/lib*
 
 %files lib32
 %defattr(-,root,root,-)

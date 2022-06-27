@@ -1,6 +1,6 @@
-/usr/lib64/haswell/libhogweed.so.4
-/usr/lib64/haswell/libhogweed.so.4.4
-/usr/lib64/haswell/libnettle.so.6
-/usr/lib64/haswell/libnettle.so.6.4
-/usr/lib64/haswell/libhogweed.so
-/usr/lib64/haswell/libnettle.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libhogweed.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libhogweed.so.6
+/usr/lib64/glibc-hwcaps/x86-64-v3/libhogweed.so.6.5
+/usr/lib64/glibc-hwcaps/x86-64-v3/libnettle.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libnettle.so.8
+/usr/lib64/glibc-hwcaps/x86-64-v3/libnettle.so.8.5
