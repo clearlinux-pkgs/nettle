@@ -6,7 +6,7 @@
 #
 Name     : nettle
 Version  : 3.8
-Release  : 54
+Release  : 55
 URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.tar.gz.sig
