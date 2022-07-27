@@ -1,5 +1,5 @@
 libhogweed.so.6:HOGWEED_6
-libhogweed.so.6:HOGWEED_INTERNAL_6_5
+libhogweed.so.6:HOGWEED_INTERNAL_6_6
 libhogweed.so.6:_nettle_cnd_copy
 libhogweed.so.6:_nettle_curve25519_eh_to_x
 libhogweed.so.6:_nettle_curve448_eh_to_x
@@ -271,7 +271,7 @@ libhogweed.so.6:nettle_sexp_transport_iterator_first
 libhogweed.so.6:nettle_sexp_transport_vformat
 libhogweed.so.6:nettle_sexp_vformat
 libnettle.so.8:NETTLE_8
-libnettle.so.8:NETTLE_INTERNAL_8_5
+libnettle.so.8:NETTLE_INTERNAL_8_6
 libnettle.so.8:_nettle_aes_decrypt
 libnettle.so.8:_nettle_aes_encrypt
 libnettle.so.8:_nettle_aes_invert
