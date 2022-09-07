@@ -6,7 +6,7 @@
 #
 Name     : nettle
 Version  : 3.8.1
-Release  : 59
+Release  : 60
 URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.1.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.1.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.1.tar.gz.sig
@@ -141,6 +141,15 @@ Group: Default
 license components for the nettle package.
 
 
+%package staticdev
+Summary: staticdev components for the nettle package.
+Group: Default
+Requires: nettle-dev = %{version}-%{release}
+
+%description staticdev
+staticdev components for the nettle package.
+
+
 %prep
 %setup -q -n nettle-3.8.1
 cd %{_builddir}/nettle-3.8.1
@@ -156,7 +165,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1658965245
+export SOURCE_DATE_EPOCH=1662582007
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -192,12 +201,12 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make -C testsuite check
+make -C testsuite %{?_smp_mflags} check
 #make -C ../buildavx2/testsuite check
-make -C ../build32/testsuite check
+make -C ../build32/testsuite %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1658965245
+export SOURCE_DATE_EPOCH=1662582007
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nettle
 cp %{_builddir}/nettle-%{version}/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
@@ -360,3 +369,8 @@ chmod a+x %{buildroot}*/usr/lib64/*
 /usr/share/package-licenses/nettle/4cc77b90af91e615a64ae04893fdffa7939db84c
 /usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
 /usr/share/package-licenses/nettle/e88f6aea9379eb98a7bbea965fc7127a64b41ad9
+
+%files staticdev
+%defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libhogweed.a
+/usr/lib64/glibc-hwcaps/x86-64-v3/libnettle.a

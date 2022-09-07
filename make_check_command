@@ -1,3 +1,3 @@
-make -C testsuite check
+make -C testsuite %{?_smp_mflags} check
 #make -C ../buildavx2/testsuite check
-make -C ../build32/testsuite check
+make -C ../build32/testsuite %{?_smp_mflags} check

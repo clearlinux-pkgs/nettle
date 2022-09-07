@@ -31,6 +31,9 @@ Configure miss: ELF-style .type,#function pseudo-ops
 Configure miss: if .align assembly directive is logarithmic
 Configure miss: if .align assembly directive is logarithmic
 Configure miss: if .align assembly directive is logarithmic
+Configure miss: if Intel CET is enabled
+Configure miss: if Intel CET is enabled
+Configure miss: if Intel CET is enabled
 Configure miss: if globals are prefixed by underscore
 Configure miss: if globals are prefixed by underscore
 Configure miss: if globals are prefixed by underscore
