@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xF3599FF828C67298 (nisse@lysator.liu.se)
 #
 Name     : nettle
-Version  : 3.8.1
-Release  : 64
-URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.1.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.1.tar.gz
-Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.8.1.tar.gz.sig
+Version  : 3.9
+Release  : 65
+URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.tar.gz.sig
 Summary  : Nettle low-level cryptographic library (symmetric algorithms)
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.0+ LGPL-3.0
@@ -128,13 +128,13 @@ license components for the nettle package.
 
 
 %prep
-%setup -q -n nettle-3.8.1
-cd %{_builddir}/nettle-3.8.1
+%setup -q -n nettle-3.9
+cd %{_builddir}/nettle-3.9
 pushd ..
-cp -a nettle-3.8.1 build32
+cp -a nettle-3.9 build32
 popd
 pushd ..
-cp -a nettle-3.8.1 buildavx2
+cp -a nettle-3.9 buildavx2
 popd
 
 %build
@@ -142,7 +142,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683061778
+export SOURCE_DATE_EPOCH=1684173096
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -183,7 +183,7 @@ make -C testsuite %{?_smp_mflags} check
 make -C ../build32/testsuite %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1683061778
+export SOURCE_DATE_EPOCH=1684173096
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nettle
 cp %{_builddir}/nettle-%{version}/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9 || :
@@ -234,6 +234,7 @@ chmod a+x %{buildroot}*/usr/lib64/*
 /usr/include/nettle/arcfour.h
 /usr/include/nettle/arctwo.h
 /usr/include/nettle/asn1.h
+/usr/include/nettle/balloon.h
 /usr/include/nettle/base16.h
 /usr/include/nettle/base64.h
 /usr/include/nettle/bignum.h
@@ -274,6 +275,7 @@ chmod a+x %{buildroot}*/usr/lib64/*
 /usr/include/nettle/nettle-meta.h
 /usr/include/nettle/nettle-types.h
 /usr/include/nettle/nist-keywrap.h
+/usr/include/nettle/ocb.h
 /usr/include/nettle/pbkdf2.h
 /usr/include/nettle/pgp.h
 /usr/include/nettle/pkcs1.h
@@ -291,7 +293,9 @@ chmod a+x %{buildroot}*/usr/lib64/*
 /usr/include/nettle/sha2.h
 /usr/include/nettle/sha3.h
 /usr/include/nettle/siv-cmac.h
+/usr/include/nettle/siv-gcm.h
 /usr/include/nettle/sm3.h
+/usr/include/nettle/sm4.h
 /usr/include/nettle/streebog.h
 /usr/include/nettle/twofish.h
 /usr/include/nettle/umac.h
@@ -319,20 +323,20 @@ chmod a+x %{buildroot}*/usr/lib64/*
 %files lib
 %defattr(-,root,root,-)
 /V3/usr/lib64/libhogweed.so.6
-/V3/usr/lib64/libhogweed.so.6.6
+/V3/usr/lib64/libhogweed.so.6.7
 /V3/usr/lib64/libnettle.so.8
-/V3/usr/lib64/libnettle.so.8.6
+/V3/usr/lib64/libnettle.so.8.7
 /usr/lib64/libhogweed.so.6
-/usr/lib64/libhogweed.so.6.6
+/usr/lib64/libhogweed.so.6.7
 /usr/lib64/libnettle.so.8
-/usr/lib64/libnettle.so.8.6
+/usr/lib64/libnettle.so.8.7
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libhogweed.so.6
-/usr/lib32/libhogweed.so.6.6
+/usr/lib32/libhogweed.so.6.7
 /usr/lib32/libnettle.so.8
-/usr/lib32/libnettle.so.8.6
+/usr/lib32/libnettle.so.8.7
 
 %files license
 %defattr(0644,root,root,0755)
