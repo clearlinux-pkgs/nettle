@@ -7,7 +7,7 @@
 #
 Name     : nettle
 Version  : 3.9
-Release  : 65
+Release  : 66
 URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.tar.gz.sig
@@ -142,7 +142,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684173096
+export SOURCE_DATE_EPOCH=1685590869
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -183,7 +183,7 @@ make -C testsuite %{?_smp_mflags} check
 make -C ../build32/testsuite %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1684173096
+export SOURCE_DATE_EPOCH=1685590869
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nettle
 cp %{_builddir}/nettle-%{version}/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9 || :
@@ -228,8 +228,6 @@ chmod a+x %{buildroot}*/usr/lib64/*
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libhogweed.so
-/V3/usr/lib64/libnettle.so
 /usr/include/nettle/aes.h
 /usr/include/nettle/arcfour.h
 /usr/include/nettle/arctwo.h
@@ -322,9 +320,7 @@ chmod a+x %{buildroot}*/usr/lib64/*
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libhogweed.so.6
 /V3/usr/lib64/libhogweed.so.6.7
-/V3/usr/lib64/libnettle.so.8
 /V3/usr/lib64/libnettle.so.8.7
 /usr/lib64/libhogweed.so.6
 /usr/lib64/libhogweed.so.6.7
