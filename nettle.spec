@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xF3599FF828C67298 (nisse@lysator.liu.se)
 #
 Name     : nettle
-Version  : 3.9
-Release  : 66
-URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.tar.gz
-Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.tar.gz.sig
+Version  : 3.9.1
+Release  : 67
+URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.1.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.1.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.1.tar.gz.sig
 Summary  : Nettle low-level cryptographic library (symmetric algorithms)
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.0+ LGPL-3.0
@@ -128,13 +128,13 @@ license components for the nettle package.
 
 
 %prep
-%setup -q -n nettle-3.9
-cd %{_builddir}/nettle-3.9
+%setup -q -n nettle-3.9.1
+cd %{_builddir}/nettle-3.9.1
 pushd ..
-cp -a nettle-3.9 build32
+cp -a nettle-3.9.1 build32
 popd
 pushd ..
-cp -a nettle-3.9 buildavx2
+cp -a nettle-3.9.1 buildavx2
 popd
 
 %build
@@ -142,7 +142,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685590869
+export SOURCE_DATE_EPOCH=1685650306
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -183,7 +183,7 @@ make -C testsuite %{?_smp_mflags} check
 make -C ../build32/testsuite %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1685590869
+export SOURCE_DATE_EPOCH=1685650306
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nettle
 cp %{_builddir}/nettle-%{version}/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/nettle/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9 || :
@@ -320,19 +320,19 @@ chmod a+x %{buildroot}*/usr/lib64/*
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libhogweed.so.6.7
-/V3/usr/lib64/libnettle.so.8.7
+/V3/usr/lib64/libhogweed.so.6.8
+/V3/usr/lib64/libnettle.so.8.8
 /usr/lib64/libhogweed.so.6
-/usr/lib64/libhogweed.so.6.7
+/usr/lib64/libhogweed.so.6.8
 /usr/lib64/libnettle.so.8
-/usr/lib64/libnettle.so.8.7
+/usr/lib64/libnettle.so.8.8
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libhogweed.so.6
-/usr/lib32/libhogweed.so.6.7
+/usr/lib32/libhogweed.so.6.8
 /usr/lib32/libnettle.so.8
-/usr/lib32/libnettle.so.8.7
+/usr/lib32/libnettle.so.8.8
 
 %files license
 %defattr(0644,root,root,0755)
