@@ -9,7 +9,7 @@
 #
 Name     : nettle
 Version  : 3.9.1
-Release  : 68
+Release  : 69
 URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.1.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.1.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.1.tar.gz.sig
