@@ -9,7 +9,7 @@
 #
 Name     : nettle
 Version  : 3.9.1
-Release  : 69
+Release  : 70
 URL      : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.1.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.1.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/nettle/nettle-3.9.1.tar.gz.sig
@@ -32,7 +32,7 @@ BuildRequires : gmp-dev32
 BuildRequires : gmp-lib32
 BuildRequires : openssl-dev
 BuildRequires : texinfo
-BuildRequires : valgrind-dev
+BuildRequires : valgrind-dev joe strace
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
