@@ -28,6 +28,9 @@ Configure miss: COFF-style .type directive
 Configure miss: ELF-style .type,#function pseudo-ops
 Configure miss: ELF-style .type,#function pseudo-ops
 Configure miss: ELF-style .type,#function pseudo-ops
+Configure miss: g++ option to enable C++11 features
+Configure miss: g++ option to enable C++11 features
+Configure miss: g++ option to enable C++11 features
 Configure miss: if .align assembly directive is logarithmic
 Configure miss: if .align assembly directive is logarithmic
 Configure miss: if .align assembly directive is logarithmic
@@ -37,3 +40,4 @@ Configure miss: if Intel CET is enabled
 Configure miss: if globals are prefixed by underscore
 Configure miss: if globals are prefixed by underscore
 Configure miss: if globals are prefixed by underscore
+Configure miss: if valgrind is working
