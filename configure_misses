@@ -28,6 +28,9 @@ Configure miss: COFF-style .type directive
 Configure miss: ELF-style .type,#function pseudo-ops
 Configure miss: ELF-style .type,#function pseudo-ops
 Configure miss: ELF-style .type,#function pseudo-ops
+Configure miss: elf_aux_info
+Configure miss: elf_aux_info
+Configure miss: elf_aux_info
 Configure miss: g++ option to enable C++11 features
 Configure miss: g++ option to enable C++11 features
 Configure miss: g++ option to enable C++11 features
